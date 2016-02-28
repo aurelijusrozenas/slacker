@@ -2,17 +2,6 @@ body {
   padding-top: 70px;
   padding-bottom: 30px; }
 
-.theme-dropdown .dropdown-menu {
-  position: static;
-  display: block;
-  margin-bottom: 20px; }
-
-.theme-showcase > p > .btn {
-  margin: 5px 0; }
-
-.theme-showcase .navbar .container {
-  width: auto; }
-
 .progress.progress-center-text {
   position: relative; }
 
@@ -21,5 +10,10 @@ body {
   display: block;
   width: 100%;
   color: black; }
+
+.progress-lg, .progress-lg .progress-bar {
+  font-size: 16px;
+  height: 35px;
+  line-height: 35px; }
 
 /*# sourceMappingURL=styles.css.map */

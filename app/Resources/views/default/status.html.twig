@@ -6,14 +6,30 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <br>
-                    <div class="progress progress-center-text">
+                    <div class="progress progress-lg progress-center-text">
                         {% set progress = totalCount/messageLimit*100 %}
                         {% set progressClass = progress >= 100 ? 'danger' : progress >= 70 ? 'warning' : 'success' %}
                         <div class="progress-bar progress-bar-{{ progressClass }}" role="progressbar" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ progress }}%">
                             <span>{{ progress }}% ({{ totalCount }}/{{ messageLimit }}) Used</span>
                         </div>
                     </div>
-                    <p>Last updated at: {{ lastUpdatedAt|date('Y-m-d H:i:s') }}</p>
+                    <p>
+                        Last updated at: {{ lastUpdatedAt|date('Y-m-d H:i:s') }}
+                        <a href="{{ url('clear_cache') }}" class="btn btn-default">Force update</a>
+                    </p>
+                    {% if not warningClosed %}
+                        <div class="alert alert-warning alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" data-post-onclick="{{ url('close_warning') }}">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            Cache is stored for {{ storageCacheValidFor }}. You can change this in parameters.yml.
+                            <br>
+                            <small>
+                                Keep in mind that getting message count from Slack API is expensive operation: Slack does not provide count so the only way now is
+                                to get all messages and message information and then count it.
+                            </small>
+                        </div>
+                    {% endif %}
                 </div>
                 <ul class="list-group">
                     {% for channel in channels %}

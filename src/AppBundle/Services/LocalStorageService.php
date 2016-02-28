@@ -4,8 +4,6 @@ namespace AppBundle\Services;
 
 class LocalStorageService
 {
-    const CACHE_VALID_FROM = '-1 hour';
-
     protected $filename = '/localStorage.json';
     protected $storage;
 
@@ -13,12 +11,30 @@ class LocalStorageService
      * LocalStorageService constructor.
      *
      * @param string $cacheDir
-     * @param string $cacheValidFrom
+     * @param string $cacheValidFor
+     *
+     * @throws \Exception
      */
-    public function __construct($cacheDir, $cacheValidFrom = self::CACHE_VALID_FROM)
+    public function __construct($cacheDir, $cacheValidFor)
     {
+        try {
+            $cacheLimit = new \DateTime('-'.$cacheValidFor);
+        } catch (\Exception $e) {
+            throw new \Exception(sprintf('Failed to "parse storage_cache_valid_for": %s', $e->getMessage()));
+        }
+
         $this->filename = $cacheDir.$this->filename;
-        $this->storage = $this->getFileContent(new \DateTime($cacheValidFrom)) ?: [];
+        $this->storage = $this->getFileContent($cacheLimit) ?: [];
+    }
+
+    /**
+     * Empties storage file.
+     *
+     * @return bool
+     */
+    public function clearStorage()
+    {
+        return false !== file_put_contents($this->filename, '');
     }
 
     /**

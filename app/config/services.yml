@@ -8,6 +8,7 @@ services:
         class: AppBundle\Services\LocalStorageService
         arguments:
             - %kernel.cache_dir%
+            - %storage_cache_valid_for%
     app.slack:
         class: AppBundle\Services\SlackService
         arguments:
