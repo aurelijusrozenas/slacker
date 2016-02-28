@@ -12,8 +12,6 @@ Installation
 
 TODO
 ====
-- [ ] force cache reload
-- [ ] cache limit in parameters
 - [ ] deleting messages:
     - [ ] allow setting date limit
     - [ ] select channels
@@ -24,3 +22,5 @@ TODO
     - [ ] estimate time
 - [ ] cron for deleting messages
 - [ ] secure login/access token
+- [x] cache limit in parameters
+- [x] force cache reload
