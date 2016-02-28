@@ -1,0 +1,29 @@
+body {
+    padding-top: 70px;
+    padding-bottom: 30px;
+}
+
+.theme-dropdown .dropdown-menu {
+    position: static;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+    margin: 5px 0;
+}
+
+.theme-showcase .navbar .container {
+    width: auto;
+}
+
+.progress.progress-center-text {
+    position: relative;
+}
+
+.progress.progress-center-text span {
+    position: absolute;
+    display: block;
+    width: 100%;
+    color: black;
+}

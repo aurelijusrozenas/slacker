@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <br>
+                    <div class="progress progress-center-text">
+                        {% set progress = totalCount/messageLimit*100 %}
+                        {% set progressClass = progress >= 100 ? 'danger' : progress >= 70 ? 'warning' : 'success' %}
+                        <div class="progress-bar progress-bar-{{ progressClass }}" role="progressbar" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ progress }}%">
+                            <span>{{ progress }}% ({{ totalCount }}/{{ messageLimit }}) Used</span>
+                        </div>
+                    </div>
+                    <p>Last updated at: {{ lastUpdatedAt|date('Y-m-d H:i:s') }}</p>
+                </div>
+                <ul class="list-group">
+                    {% for channel in channels %}
+                        <li class="list-group-item">
+                            <span class="badge">{{ channel.count }}</span>
+                            {{ channel.name }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

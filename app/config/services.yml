@@ -1,0 +1,15 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+    app.local_storage:
+        class: AppBundle\Services\LocalStorageService
+        arguments:
+            - %kernel.cache_dir%
+    app.slack:
+        class: AppBundle\Services\SlackService
+        arguments:
+            - %slack_token%
+            - '@app.local_storage'
