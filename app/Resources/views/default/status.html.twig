@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends extendBase is not defined or extendBase ? 'base.html.twig' : 'empty.html.twig' %}
 
 {% block content %}
     <div class="row">

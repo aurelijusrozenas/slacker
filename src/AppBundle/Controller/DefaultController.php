@@ -18,9 +18,26 @@ class DefaultController extends Controller
      * @Route("/", name="index")
      *
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Exception
      */
-    public function statusAction(Request $request)
+    public function statusAction()
+    {
+        return $this->render(
+            'preloader.html.twig',
+            [
+                'url' => $this->generateUrl('index_loader'),
+                'breadcrumbs' => $this->getBreadcrumbs('Home'),
+            ]
+        );
+    }
+
+    /**
+     * @Route("/load", name="index_loader")
+     *
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function statusLoaderAction(Request $request)
     {
         $channels = $this->get('app.slack')->getChannels();
 
@@ -44,6 +61,7 @@ class DefaultController extends Controller
                 'totalCount' => $totalCount,
                 'messageLimit' => $this->container->getParameter('message_limit'),
                 'breadcrumbs' => $this->getBreadcrumbs('Home'),
+                'extendBase' => false,
             ]
         );
     }
