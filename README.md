@@ -10,8 +10,15 @@ Installation
     - Slack token can be created in https://api.slack.com/docs/oauth-test-tokens
 - thats it!
 
+Deploying with capifony
+=======================
+- copy `app/config/capifony/deploy.rb.dist` to `app/config/capifony/deploy.rb`
+- update values at the top of the file
+- run `cap deploy`
+
 TODO
 ====
+- [ ] html loading splash
 - [ ] deleting messages:
     - [ ] allow setting date limit
     - [ ] select channels
@@ -22,5 +29,6 @@ TODO
     - [ ] estimate time
 - [ ] cron for deleting messages
 - [ ] secure login/access token
+- [x] capifony
 - [x] cache limit in parameters
 - [x] force cache reload
