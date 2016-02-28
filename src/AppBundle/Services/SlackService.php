@@ -35,6 +35,8 @@ class SlackService
 
             $this->localStorageService->saveFileContent();
         }
+
+        $this->loadMessageCounts();
     }
 
     /**
@@ -96,6 +98,10 @@ class SlackService
     protected function loadChannels()
     {
         $this->channels = $this->getJson('channels.list')->channels;
+    }
+
+    protected function loadMessageCounts()
+    {
         // load from cache
         foreach ($this->channels as $key => $channel) {
             $this->channels[$key]->count = $this->localStorageService->getChannelCount($channel->name);

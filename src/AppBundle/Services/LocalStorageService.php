@@ -4,6 +4,8 @@ namespace AppBundle\Services;
 
 class LocalStorageService
 {
+    const PARAM_MESSAGE_COUNTS = 'channelMessageCounts';
+
     protected $filename = '/localStorage.json';
     protected $storage;
 
@@ -60,8 +62,8 @@ class LocalStorageService
      */
     public function getChannelCount($channelName)
     {
-        if ($this->storage && isset($this->storage['channelMessageCounts'][$channelName])) {
-            return $this->storage['channelMessageCounts'][$channelName];
+        if (isset($this->storage[self::PARAM_MESSAGE_COUNTS][$channelName])) {
+            return $this->storage[self::PARAM_MESSAGE_COUNTS][$channelName];
         }
 
         return false;
@@ -75,7 +77,7 @@ class LocalStorageService
      */
     public function addChannelMessageCount($channelName, $count)
     {
-        $this->storage['channelMessageCounts'][$channelName] = $count;
+        $this->storage[self::PARAM_MESSAGE_COUNTS][$channelName] = $count;
     }
 
     /**
@@ -101,6 +103,7 @@ class LocalStorageService
         ;
         // cache is not valid any more
         if (!$json || !$json['lastUpdatedAt'] || $cacheValidFrom > new \DateTime($json['lastUpdatedAt'])) {
+
             return false;
         }
 
