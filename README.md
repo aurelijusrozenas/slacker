@@ -18,7 +18,6 @@ Deploying with capifony
 
 TODO
 ====
-- [ ] html loading splash
 - [ ] deleting messages:
     - [ ] allow setting date limit
     - [ ] select channels
@@ -29,6 +28,8 @@ TODO
     - [ ] estimate time
 - [ ] cron for deleting messages
 - [ ] secure login/access token
+- [ ] time ago
+- [x] html loading splash
 - [x] capifony
 - [x] cache limit in parameters
 - [x] force cache reload
