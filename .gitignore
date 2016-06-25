@@ -15,3 +15,5 @@
 /vendor/
 /web/bundles/
 /app/config/capifony/deploy.rb
+/app/config/capifony/parameters.yml-server
+
